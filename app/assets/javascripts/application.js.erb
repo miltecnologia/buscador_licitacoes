@@ -1,0 +1,105 @@
+// This is a manifest file that'll be compiled into application.js, which will include all the files
+// listed below.
+//
+// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
+// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
+//
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
+// the compiled file.
+//
+// WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
+// GO AFTER THE REQUIRES BELOW.
+//
+//= require jquery
+//= require jquery_ujs
+//= require_tree .
+
+var salvar_filtro = function(){	
+	var keywords = document.getElementById('filtro_keywords').value
+	if( keywords == null || keywords.length == 0 ){
+		alert('Nenhuma keyword foi fornecida. Não foi possível salvar o filtro.')
+	} else {
+		var descricao = prompt("Forneça a descrição para esse filtro:");
+		
+		if (descricao != null) {
+			if ( descricao.length > 0) {
+				document.getElementById('filtro_descricao').value = descricao
+				document.forms[0].method = "post";
+				document.forms[0].action = get_action_with_context("filtro/salvar");
+				document.forms[0].submit();
+			} else {
+				alert('Descrição inválida. Filtro não foi salvo.')
+			}
+		}
+	}
+}
+
+var pesquisar = function(){
+	document.forms[0].method = "get";
+	document.forms[0].action = get_action_with_context("pesquisa");
+}
+
+var muda_keywords = function( e ) {
+	var descricao = e.value;
+	var keywords = '';
+	for( var key in filtrosJSON ){
+		if( descricao === filtrosJSON[key].descricao) {
+			keywords = filtrosJSON[key].keywords;
+		}
+	}
+	document.getElementById('filtro_keywords').value = keywords;
+}
+
+var greyout = function() {
+   	
+    document.getElementById('all').style.display = 'none';
+    var bgBar = document.createElement("div");
+    bgBar.setAttribute("class", "progress progress-striped active");
+    var bar = document.createElement("div");
+    bar.setAttribute("class", "bar");
+    bar.setAttribute("style", "width: 100%");
+    bgBar.appendChild(bar);
+   document.getElementsByTagName("body")[0].appendChild(bgBar);
+   console.log(document.getElementsByTagName("body")[0].innerHTML);
+}
+
+var nao_exibir = function() {
+	var trs = document.getElementsByTagName("td");
+	var checkboxes = {};
+	var objetos_ids = "";
+	for( var i = 0; i < trs.length; i++ ){
+		
+		if (trs[i].getAttribute('class') == 'checkbox-exibir' ){
+			var inp = trs[i].getElementsByTagName('input');
+			if( inp[0].checked == true) {
+				if( objetos_ids != "") {
+				objetos_ids = objetos_ids + "," + inp[0].id;
+				} else {
+					objetos_ids = inp[0].id;
+				}
+			}
+			
+		}
+	}
+	var href = window.location.pathname + "nao_exibe_objetos?objetos_ids=" + objetos_ids
+	if ( page != 0 ) {
+		href += "&page="+page
+	}
+	document.getElementById('nao_exibir').href= href
+}
+
+var marcar_desmarcar_todos = function(checkbox) {
+	var trs = document.getElementsByTagName("td");
+	var objetos_ids = "";
+	for( var i = 0; i < trs.length; i++ ){
+		if (trs[i].getAttribute('class') == 'checkbox-exibir' ){
+			var inp = trs[i].getElementsByTagName('input');
+			inp[0].checked = checkbox.checked;
+		}
+	}
+}
+
+var get_action_with_context = function(action){	
+	return window.location.pathname + action;
+}
+

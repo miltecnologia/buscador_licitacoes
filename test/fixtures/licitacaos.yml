@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  codigo: MyString
+  municipio: MyString
+  objeto: MyText
+  data_abertura: 2013-03-06
+  link: MyString
+  exibir: false
+
+two:
+  codigo: MyString
+  municipio: MyString
+  objeto: MyText
+  data_abertura: 2013-03-06
+  link: MyString
+  exibir: false

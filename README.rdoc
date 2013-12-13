@@ -1,0 +1,26 @@
+== Licitações Finder
+
+Sistema online de pesquisa de licitações no portal do TCM-CE
+
+== Especificação do projeto
+
+  Tecnologias
+
+- Ruby 1.9.3
+- Rails 3.2.12
+- Twitter Boostrap
+- Postgresql
+
+== Configuração do Projeto para Teste/Desenvolvimento
+
+- Instale as dependências listadas acima
+- <tt> bundle install </tt>
+- <tt> rake db:create db:migrate </tt>
+	
+== Configuração do Projeto para Produção
+
+- Instale as dependências listadas acima
+- <tt> bundle install </tt>
+- <tt> rake db:create RAILS_ENV="production" </tt>
+- <tt> rake db:migrate RAILS_ENV="production" </tt>
+- <tt> rake assets:precompile </tt>
