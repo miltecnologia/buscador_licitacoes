@@ -1,6 +1,7 @@
 == Licitações Finder
 
-Sistema online de pesquisa de licitações no portal do TCM-CE
+Sistema online de pesquisa de licitações no portal do TCM-CE.
+Desenvolvido como projeto piloto para aprendizado em RoR pelos novos estagiários.
 
 == Especificação do projeto
 
