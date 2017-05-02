@@ -11,10 +11,12 @@ Desenvolvido como projeto piloto para aprendizado em RoR pelos novos estagiário
 - Rails 3.2.12
 - Twitter Boostrap
 - Postgresql
+- NodeJs
 
 == Configuração do Projeto para Teste/Desenvolvimento
 
 - Instale as dependências listadas acima
+- <tt> sudo apt-get install nodejs </tt>
 - <tt> bundle install </tt>
 - <tt> rake db:create db:migrate </tt>
 	
